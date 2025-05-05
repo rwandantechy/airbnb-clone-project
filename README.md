@@ -23,7 +23,7 @@ To build a robust backend system that powers a rental platform similar to Airbnb
 
 ---
 
-## 🛠️ Features Overview
+##  Features Overview
 
 ### 1. REST & GraphQL APIs
 - Documented using **OpenAPI (Swagger)** and supports GraphQL for flexible queries.
@@ -87,3 +87,97 @@ The success of a software project depends on a well-structured team where each r
 | **DevOps Engineer**       | Designs and manages CI/CD pipelines, containerization (e.g., Docker), deployment environments, and system monitoring. Ensures reliable delivery and operational efficiency. |
 
 >  Note: For small Agile teams (4–10 members), some roles may be combined (e.g., a Backend Developer acting as a Software Architect), depending on the team’s experience and the project’s scope.
+##  Database Design
+
+This project uses a **relational database model** to represent the core components of the Airbnb platform. Below are the key entities and their relationships:
+
+###  Users
+Represents both guests and hosts on the platform.
+
+**Fields:**
+- `id`: Primary key (UUID or INT)
+- `name`: Full name
+- `email`: Unique user email (used for login)
+- `password_hash`: Hashed password
+- `is_host`: Boolean indicating host status
+
+**Relationships:**
+- A user can list multiple properties.
+- A user can make multiple bookings.
+- A user can leave multiple reviews.
+
+---
+
+###  Properties
+Represents listings created by hosts.
+
+**Fields:**
+- `id`: Primary key
+- `user_id`: Foreign key referencing the owner (host)
+- `title`: Property name or title
+- `description`: Details about the listing
+- `location`: Address or coordinates
+
+**Relationships:**
+- A property belongs to one user (host).
+- A property can have multiple bookings.
+- A property can have multiple reviews.
+
+---
+
+###  Bookings
+Captures reservation details for a property.
+
+**Fields:**
+- `id`: Primary key
+- `user_id`: Foreign key referencing the guest
+- `property_id`: Foreign key referencing the booked property
+- `start_date`: Check-in date
+- `end_date`: Check-out date
+
+**Relationships:**
+- A booking is made by one user for one property.
+- A booking may have one associated payment.
+
+---
+
+###  Payments
+Handles transaction details related to bookings.
+
+**Fields:**
+- `id`: Primary key
+- `booking_id`: Foreign key
+- `amount`: Payment amount
+- `payment_date`: Timestamp of transaction
+- `status`: Enum (e.g., pending, completed, failed)
+
+**Relationships:**
+- A payment is linked to one booking.
+- A booking can only have one payment record.
+
+---
+
+###  Reviews
+Captures user feedback about a property.
+
+**Fields:**
+- `id`: Primary key
+- `user_id`: Foreign key referencing the reviewer
+- `property_id`: Foreign key
+- `rating`: Integer (1–5)
+- `comment`: Optional user message
+
+**Relationships:**
+- A review is written by one user for one property.
+- A property can have many reviews.
+
+---
+
+###  Entity Relationship Summary
+
+- **One-to-Many**: A `User` → `Properties`, `Bookings`, `Reviews`
+- **One-to-One**: A `Booking` → `Payment`
+- **Many-to-One**: `Bookings`, `Reviews` → `Property`
+
+This normalized schema ensures referential integrity, scalability, and efficient data querying.
+
