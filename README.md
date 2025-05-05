@@ -2,198 +2,240 @@
 
 ## About the Project
 
-The Airbnb Clone Project is a full-stack web development initiative that simulates the core functionalities of Airbnb. The backend is built with scalability, performance, and security in mind, supporting user management, property listings, booking workflows, payments, and reviews. This project allows developers to engage in real-world practices including API design, database modeling, and CI/CD automation.
+The Airbnb Clone Project is a comprehensive, full-stack web application that replicates the core functionalities of Airbnb. This backend system is developed to handle user authentication, property listings, booking workflows, payments, and reviews. It is designed with scalability, performance, and security in mind, making it ideal for hands-on experience in real-world development.
 
 ## Objective
 
-To build a robust backend system that powers a rental platform similar to Airbnb, using modern tools and frameworks. The backend handles data storage, user interactions, secure transactions, and supports multiple frontend integrations.
+To develop a robust and secure backend system using modern web technologies that supports dynamic rental operations and can integrate with frontend interfaces. The system is containerized for easy deployment and automated through CI/CD pipelines.
 
 ## Project Goals
 
-- Implement secure user registration, login, and profile management
-- Create, update, retrieve, and delete property listings
-- Enable booking, availability checks, and reservation management
-- Integrate secure payment handling for transactions
-- Allow user-generated reviews with moderation capabilities
-- Optimize performance through indexing and caching strategies
+- Implement secure user registration, login, and role-based access
+- Provide CRUD functionality for property listings
+- Enable a complete booking management system
+- Integrate payment processing for transactions
+- Support user reviews and rating submissions
+- Optimize performance with caching and database indexing
+- Automate testing and deployment using CI/CD practices
+
+---
 
 ## Feature Breakdown
 
-**1. REST & GraphQL APIs**
-- Documented using OpenAPI (Swagger)
-- Built with Django REST Framework and GraphQL support
+1. **REST & GraphQL APIs**
+   - RESTful endpoints implemented with Django REST Framework
+   - GraphQL API layer for flexible querying
+   - OpenAPI (Swagger) documentation support
 
-**2. Authentication & User Management**
-- JWT-based authentication
-- Secure endpoints: `/users/`, `/users/{id}/`
+2. **Authentication & User Management**
+   - JWT-based authentication
+   - Role-based access for guests, hosts, and admins
+   - Secure profile update endpoints
 
-**3. Property Management**
-- Endpoints: `/properties/`, `/properties/{id}/`
-- Full CRUD support for property listings
+3. **Property Management**
+   - Hosts can create, update, delete, and retrieve listings
+   - Property endpoints: `/properties/`, `/properties/{id}/`
 
-**4. Booking System**
-- Endpoints: `/bookings/`, `/bookings/{id}/`
-- Availability checks, cancellation policies
+4. **Booking System**
+   - Users can make, update, cancel bookings
+   - Booking endpoints: `/bookings/`, `/bookings/{id}/`
 
-**5. Payment Integration**
-- Endpoint: `/payments/`
-- Mock payment gateway with upgrade path to Stripe/PayPal
+5. **Payment Integration**
+   - Mock payment service with potential to integrate Stripe
+   - Endpoint: `/payments/`
 
-**6. Review System**
-- Endpoints: `/reviews/`, `/reviews/{id}/`
-- Star ratings, feedback, moderation
+6. **Review System**
+   - Users can rate and review properties
+   - Review endpoints: `/reviews/`, `/reviews/{id}/`
 
-**7. Performance & Optimization**
-- PostgreSQL with indexing and relationships
-- Redis caching and Celery background jobs
+7. **Performance Optimization**
+   - PostgreSQL indexing
+   - Redis caching for frequently queried data
+   - Celery for background task execution
+
+---
 
 ## Technology Stack
 
-| Component         | Technology                       |
-|------------------|----------------------------------|
-| Framework         | Django                           |
-| API Layer         | Django REST Framework, GraphQL   |
-| Database          | PostgreSQL                       |
-| Caching           | Redis                            |
-| Task Queue        | Celery                           |
-| Containerization  | Docker                           |
-| DevOps / CI/CD    | GitHub Actions                   |
-| Testing           | Pytest, DRF Test Tools           |
+| Component         | Technology                       | Purpose                                                                 |
+|------------------|----------------------------------|-------------------------------------------------------------------------|
+| Framework         | Django                           | Server-side logic and MVC architecture                                 |
+| API Layer         | Django REST Framework, GraphQL   | RESTful APIs and flexible query support                                |
+| Database          | PostgreSQL                       | Relational data storage with indexing and constraints                  |
+| Caching           | Redis                            | Reduces DB load and speeds up responses                                |
+| Task Queue        | Celery                           | Handles background tasks like email notifications                      |
+| Containerization  | Docker, Docker Compose           | Enables consistent dev and deployment environments                     |
+| CI/CD             | GitHub Actions                   | Automates testing, building, and deployment workflows                  |
+| Testing           | Pytest, DRF Test Tools           | Ensures code correctness and regression prevention                     |
+| Code Quality      | Black, Flake8                    | Enforces consistent formatting and linting                             |
+
+---
 
 ## Team Roles
 
-A well-structured development team ensures smooth delivery and product quality. Below are the core team roles based on Agile practices.
+This project follows an Agile team structure based on real-world software engineering models.
 
 | Role                  | Responsibilities                                                                 |
 |-----------------------|----------------------------------------------------------------------------------|
-| Product Owner (PO)    | Defines product vision, manages backlog, ensures business alignment              |
-| Business Analyst (BA) | Translates business needs into technical specifications                          |
-| Project Manager (PM)  | Coordinates tasks, timelines, communication, and delivery                        |
-| UI/UX Designer        | Designs user interfaces and user journeys for optimal experience                 |
-| Software Architect    | Defines system architecture, tech stack, and enforces coding standards           |
-| Backend Developer     | Builds core logic, APIs, and handles integrations and database interaction       |
-| Frontend Developer    | (If applicable) Builds client-side interface and integrates APIs                 |
-| QA Engineer           | Verifies functionality, runs manual and automated tests                          |
-| Test Automation Eng.  | Builds automated testing frameworks and scripts                                  |
-| DevOps Engineer       | Manages CI/CD pipelines, containerization, monitoring, and environment config    |
+| Product Owner (PO)    | Defines product vision and priorities, manages the product backlog               |
+| Business Analyst (BA) | Converts business needs into technical specs, works closely with the PO          |
+| Project Manager (PM)  | Oversees timelines, communication, risk mitigation, and team coordination        |
+| UI/UX Designer        | Designs intuitive user flows, wireframes, and interactive UI elements            |
+| Software Architect    | Determines overall system structure, tech stack, and coding standards            |
+| Backend Developer     | Builds APIs, integrates services, manages database logic                         |
+| Frontend Developer    | (If applicable) Develops user interface and connects to APIs                     |
+| QA Engineer           | Conducts manual and automated tests to verify system quality                     |
+| Test Automation Eng.  | Develops and maintains test automation scripts and frameworks                    |
+| DevOps Engineer       | Sets up CI/CD pipelines, Docker infrastructure, and monitoring tools             |
 
-Note: For smaller teams, roles may overlap depending on team member expertise.
+---
 
 ## Database Design
 
-This project uses a relational database model to represent key components of the platform.
+A relational schema is used to model all entities required for the system.
 
 ### Users
+
 Represents both guests and hosts.
 
-- `id`, `name`, `email`, `password_hash`, `is_host`
+- `id` (Primary Key)
+- `name`
+- `email` (unique)
+- `password_hash`
+- `is_host` (Boolean)
 
-Relationships:
-- A user can list multiple properties, make bookings, and write reviews
+**Relationships:**
+- One user can list many properties
+- One user can make many bookings
+- One user can leave many reviews
 
 ### Properties
-Listings created by hosts.
 
-- `id`, `user_id`, `title`, `description`, `location`
+Represents listings created by hosts.
 
-Relationships:
-- Belongs to one user
-- Has multiple bookings and reviews
+- `id`
+- `user_id` (FK to Users)
+- `title`
+- `description`
+- `location`
+
+**Relationships:**
+- Each property belongs to one host
+- A property can have many bookings and reviews
 
 ### Bookings
-Details of reservations.
 
-- `id`, `user_id`, `property_id`, `start_date`, `end_date`
+Represents a reservation for a property.
 
-Relationships:
-- A booking is made by one user for one property
-- Has one associated payment
+- `id`
+- `user_id` (FK to Users)
+- `property_id` (FK to Properties)
+- `start_date`
+- `end_date`
+
+**Relationships:**
+- A booking belongs to one user and one property
+- A booking has one associated payment
 
 ### Payments
-Transaction details.
 
-- `id`, `booking_id`, `amount`, `payment_date`, `status`
+Handles booking transactions.
 
-Relationships:
-- Linked to one booking
+- `id`
+- `booking_id` (FK to Bookings)
+- `amount`
+- `payment_date`
+- `status` (e.g., completed, pending)
+
+**Relationships:**
+- One-to-one with Booking
 
 ### Reviews
-User feedback on properties.
 
-- `id`, `user_id`, `property_id`, `rating`, `comment`
+Captures user feedback on properties.
 
-Relationships:
-- Written by one user for one property
+- `id`
+- `user_id` (FK to Users)
+- `property_id` (FK to Properties)
+- `rating` (1-5)
+- `comment`
 
-**Entity Relationship Summary**:
-- One-to-Many: User → Properties, Bookings, Reviews
-- One-to-One: Booking → Payment
-- Many-to-One: Bookings, Reviews → Property
+**Relationships:**
+- One user → many reviews
+- One property → many reviews
+
+---
 
 ## API Security
 
-The backend applies best practices in API security:
+The backend applies several security measures to protect user data and prevent unauthorized access.
 
-**Authentication & Authorization**
-- JWT tokens for secure user sessions
-- Role-based access control (RBAC)
+### Authentication & Authorization
 
-**Data Protection**
-- Password hashing with `bcrypt`
-- Input validation with Django serializers
-- HTTPS enforced in production
+- JWT tokens required for all protected routes
+- Role-based access control (RBAC) for different user types
 
-**Rate Limiting**
-- Throttle requests to protect against abuse
+### Data Protection
 
-**Secure File Handling**
-- Uploaded files are sanitized and access-controlled
+- Passwords hashed with `bcrypt`
+- Server-side validation for all input
+- Enforced HTTPS in production
 
-**Logging & Monitoring**
-- All auth errors and permission denials are logged
-- Integration with monitoring tools like Sentry or Prometheus (planned)
+### Rate Limiting & Throttling
 
-**Security Testing**
-- Includes test cases for security validations
-- Future support for static code analysis in CI/CD
+- Limits number of requests per IP to prevent abuse
+- Implemented using Django REST Framework throttle classes
 
-Note: Use `.env` files to securely store API keys and secrets.
+### Secure File Handling
+
+- Files scanned and access URLs are tokenized or time-limited
+
+### Logging & Monitoring
+
+- Tracks failed logins, permission denials, and suspicious behavior
+- Supports integration with tools like Sentry and Prometheus
+
+### Security Testing
+
+- Test cases include permission checks and invalid input
+- Static code analysis planned via CI workflows
+
+**Note:** Use `.env` files to secure credentials and secret keys.
+
+---
 
 ## CI/CD Pipeline
 
-The project follows a CI/CD pipeline to ensure consistent delivery and testing.
+### Overview
 
-### Objectives
-- Automatically run tests on push or PR
-- Build Docker images for deployment
-- Ensure high code quality and reliability
+This project uses a Continuous Integration and Continuous Deployment pipeline to automate testing and deployment, increase development velocity, and reduce human error.
+
+### Benefits of CI/CD
+
+- Faster development and deployment cycles
+- Reliable test automation for consistent quality
+- Streamlined collaboration across environments
 
 ### Tools Used
-- GitHub Actions for automation
-- Docker & Docker Compose for containerization
-- Pytest/Unittest for automated testing
-- Black / Flake8 for linting
 
-### Workflow Steps
+- **GitHub Actions** – For automated workflows
+- **Docker** – For packaging and environment consistency
+- **Docker Compose** – For managing multi-container dev/staging setups
+- **Black / Flake8** – For code formatting and linting
+- **Pytest / unittest** – For automated testing
 
-1. **Code Push or PR**
-   - GitHub Actions triggered
-   - Run linter and tests
+### Workflow Summary
 
+1. **Push or PR Event**
+   - Triggers linting and unit tests
 2. **Docker Build**
-   - App containerized
-   - Image pushed to registry
-
-3. **Testing**
-   - Automated tests validate the application
-
-4. **Deploy**
-   - Deployed to staging or production
-   - Manual approval for production if needed
-
+   - Creates a container image for the app
+3. **Run Tests**
+   - Executes tests inside Docker
+4. **Deployment**
+   - Deploys to staging or production after build success
 5. **Monitoring & Rollback**
-   - Logs monitored
-   - Rollback supported via container versions
+   - Supports version rollback and error alerts
 
 ### Sample GitHub Actions Workflow
 
