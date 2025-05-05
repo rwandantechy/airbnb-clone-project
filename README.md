@@ -180,4 +180,42 @@ Captures user feedback about a property.
 - **Many-to-One**: `Bookings`, `Reviews` → `Property`
 
 This normalized schema ensures referential integrity, scalability, and efficient data querying.
+## API Security
+
+The Airbnb Clone backend implements several industry-standard security measures to ensure safe and authorized access to APIs, prevent data breaches, and enforce role-based operations.
+
+### Authentication & Authorization
+
+- **JWT Authentication**: All API requests require a valid JSON Web Token (JWT). Upon login, a token is issued and must be included in the `Authorization` header.
+- **Role-Based Access Control (RBAC)**: Different actions (e.g., creating properties, managing bookings) are restricted based on the user's role (e.g., host, guest, admin).
+
+### Data Protection
+
+- **Password Hashing**: User passwords are securely stored using salted hashing algorithms like `bcrypt`.
+- **Input Validation**: All incoming data is validated server-side using Django serializers to prevent malformed or malicious input (e.g., SQL injection, XSS).
+- **HTTPS Enforcement**: APIs are served over HTTPS in production environments to ensure encrypted communication.
+
+### Rate Limiting & Throttling
+
+- Prevents brute-force attacks and abuse of public endpoints by limiting the number of requests per user or IP.
+- Implemented using Django REST Framework’s throttling mechanisms.
+
+### Secure File Handling (if applicable)
+
+- Uploaded files are sanitized and scanned.
+- File access URLs are signed and time-limited to avoid unauthorized access.
+
+### Logging & Monitoring
+
+- Authentication failures, permission denials, and abnormal behavior are logged for audit purposes.
+- Integration with monitoring tools (e.g., Sentry, Prometheus) is planned for production environments.
+
+### Security Testing
+
+- Unit and integration tests include negative scenarios to ensure permission errors and input validation are enforced.
+- Future enhancements include static code analysis and dependency scanning via CI/CD pipelines.
+
+---
+
+**Note:** Never expose sensitive credentials (e.g., database URLs, secret keys) in source code. Use environment variables and `.env` files managed via secure deployment tools.
 
