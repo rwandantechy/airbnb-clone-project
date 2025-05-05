@@ -23,7 +23,7 @@ To build a robust backend system that powers a rental platform similar to Airbnb
 
 ---
 
-##  Features Overview
+##  Feature Breakdown
 
 ### 1. REST & GraphQL APIs
 - Documented using **OpenAPI (Swagger)** and supports GraphQL for flexible queries.
