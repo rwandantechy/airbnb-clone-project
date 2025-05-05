@@ -1,25 +1,25 @@
-# 🏡 Airbnb Clone Project – Backend System
+# Airbnb Clone Project – Backend System
 
-## 📘 About the Project
+## About the Project
 
 The **Airbnb Clone Project** is a full-stack web development initiative that simulates the core functionalities of Airbnb. The backend is built with scalability, performance, and security in mind, supporting user management, property listings, booking workflows, payments, and reviews. This project allows developers to engage in real-world practices including API design, database modeling, and CI/CD automation.
 
 ---
 
-## 🚀 Objective
+##  Objective
 
 To build a robust backend system that powers a rental platform similar to Airbnb, using modern tools and frameworks. The backend handles data storage, user interactions, secure transactions, and supports multiple frontend integrations.
 
 ---
 
-## 🏆 Project Goals
+##  Project Goals
 
-- ✅ Implement secure user registration, login, and profile management.
-- ✅ Create, update, retrieve, and delete property listings.
-- ✅ Enable booking, availability checks, and reservation management.
-- ✅ Integrate secure payment handling for transactions.
-- ✅ Allow user-generated reviews with moderation capabilities.
-- ✅ Optimize performance through indexing and caching strategies.
+- Implement secure user registration, login, and profile management.
+-  Create, update, retrieve, and delete property listings.
+-  Enable booking, availability checks, and reservation management.
+-  Integrate secure payment handling for transactions.
+-  Allow user-generated reviews with moderation capabilities.
+-  Optimize performance through indexing and caching strategies.
 
 ---
 
@@ -56,7 +56,7 @@ To build a robust backend system that powers a rental platform similar to Airbnb
 
 ---
 
-## ⚙️ Technology Stack
+## Technology Stack
 
 | Component        | Technology              |
 |------------------|--------------------------|
@@ -69,7 +69,7 @@ To build a robust backend system that powers a rental platform similar to Airbnb
 | DevOps           | GitHub Actions (CI/CD)   |
 | Testing          | Pytest, DRF Test Tools   |
 
-## 👥 Team Roles
+##  Team Roles
 
 The success of a software project depends on a well-structured team where each role contributes to the product's technical strength, usability, and business value. Below is a summary of the team roles involved in the Airbnb Clone backend development, inspired by real-world agile practices and professional team models such as those from ITRexGroup.
 
@@ -86,4 +86,4 @@ The success of a software project depends on a well-structured team where each r
 | **Test Automation Engineer** | Builds and maintains automated testing frameworks to reduce testing time and catch regressions early. Selects testing tools and defines automation strategies. |
 | **DevOps Engineer**       | Designs and manages CI/CD pipelines, containerization (e.g., Docker), deployment environments, and system monitoring. Ensures reliable delivery and operational efficiency. |
 
-> 📌 Note: For small Agile teams (4–10 members), some roles may be combined (e.g., a Backend Developer acting as a Software Architect), depending on the team’s experience and the project’s scope.
+>  Note: For small Agile teams (4–10 members), some roles may be combined (e.g., a Backend Developer acting as a Software Architect), depending on the team’s experience and the project’s scope.
